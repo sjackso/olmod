@@ -190,11 +190,11 @@ namespace GameMod {
             if (m_snapshot_buffer.m_num_snapshots > 0)
             {
                 if (!MPNoPositionCompression.enabled || !MPTweaks.ClientHasTweak(send_to_player.connectionToClient.connectionId, "nocompress")) {
-                    send_to_player.connectionToClient.SendByChannel(MessageTypes.MsgNewPlayerSnapshotToClient, send_to_player.m_snapshot_buffer, 1);
+                    send_to_player.connectionToClient.SendByChannel(64, send_to_player.m_snapshot_buffer, 1);
                     return false;
                 }
 
-                send_to_player.connectionToClient.SendByChannel(64, m_snapshot_buffer.ToOldSnapshotMessage(), 1);
+                send_to_player.connectionToClient.SendByChannel(MessageTypes.MsgNewPlayerSnapshotToClient, m_snapshot_buffer.ToOldSnapshotMessage(), 1);
             }
             return false;
         }
