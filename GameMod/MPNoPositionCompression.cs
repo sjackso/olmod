@@ -84,7 +84,7 @@ namespace GameMod {
         /// </summary>
         /// <param name="reader"></param>
         public override void Deserialize(NetworkReader reader) {
-            float timestamp = reader.ReadSingle();
+            m_timestamp = reader.ReadSingle();
             m_num_snapshots = (int)reader.ReadByte();
             for (int i = 0; i < m_num_snapshots; i++) {
                 NetworkInstanceId net_id = reader.ReadNetworkId();
@@ -106,6 +106,7 @@ namespace GameMod {
             }
         }
 
+        public float m_timestamp;
         public int m_num_snapshots;
         public NewPlayerSnapshot[] m_snapshots = Enumerable.Range(1, 16).Select(x => new NewPlayerSnapshot()).ToArray();
 
